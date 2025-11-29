@@ -1,17 +1,19 @@
 ---
-title: SVGR
+title: Using SVGs
 description: SVGs as React Components
 ---
 
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import { File, Folder, Files } from 'fumadocs-ui/components/files';
+import Author from '@/components/author.tsx';
 
 ## Introduction
 
-SVGR is a tool that transforms SVG files into fully customizable React components.
+Working with SVGs in React can be tricky. If you use raw SVGs directly, you cannot easily override props like `width`, `height`, `fill`, or `stroke`.
 
-Instead of treating SVGs as static image assets, SVGR lets you import them directly into your React application and control them using props—such as width, height, fill, stroke, className, and more.
+Manually converting each SVG into a React component is repetitive, time-consuming, and error-prone.
 
+**SVGR** solves this problem by transforming SVG files into fully customizable React components. You can import them directly into your React application and control them using props—such as `width`, `height`, `fill`, `stroke`, `className`, and more.
 
 ### Why use SVGR?
 
@@ -32,14 +34,52 @@ Below are the two essential steps: installing dependencies and setting up the co
 
 <Tabs groupId="dependencies" items={['Next.js', 'React']}>
   <Tab value="Next.js">
-    ```bash
-      npm install --save-dev @svgr/webpack
-    ```
+    <Tabs groupId="next-install" items={['npm', 'pnpm', 'yarn', 'bun']}>
+      <Tab value="npm">
+        ```bash
+        npm install --save-dev @svgr/webpack
+        ```
+      </Tab>
+      <Tab value="pnpm">
+      ```bash
+      pnpm add -D @svgr/webpack
+      ```
+      </Tab>
+      <Tab value="yarn">
+      ```bash
+      yarn add -D @svgr/webpack
+      ```
+      </Tab>
+      <Tab value="bun">
+      ```bash
+      bun add -d @svgr/webpack
+      ```
+      </Tab>
+    </Tabs>
   </Tab>
   <Tab value="React">
-    ```bash
-      npm install --save-dev vite-plugin-svgr @svgr/plugin-svgo @svgr/plugin-jsx
-    ```
+    <Tabs groupId="react-install" items={['npm', 'pnpm', 'yarn', 'bun']}>
+      <Tab value="npm">
+        ```bash
+        npm install --save-dev vite-plugin-svgr @svgr/plugin-svgo @svgr/plugin-jsx
+        ```
+      </Tab>
+      <Tab value="pnpm">
+      ```bash
+      pnpm add -D vite-plugin-svgr @svgr/plugin-svgo @svgr/plugin-jsx
+      ```
+      </Tab>
+      <Tab value="yarn">
+      ```bash
+      yarn add -D vite-plugin-svgr @svgr/plugin-svgo @svgr/plugin-jsx
+      ```
+      </Tab>
+      <Tab value="bun">
+      ```bash
+      bun add -d vite-plugin-svgr @svgr/plugin-svgo @svgr/plugin-jsx
+      ```
+      </Tab>
+    </Tabs>
   </Tab>
 </Tabs>
 
@@ -120,7 +160,7 @@ This configuration file is the setup I created after experimenting with differen
 
         // Gradient icons (keep fills)
         svgr({
-          include: ['**/assets/icons/gradients/**/*.svg'],
+          include: ['**/assets/icons/gradients/**/*.svg*'],
           svgrOptions: {
             icon: false,
             svgProps: {},
@@ -138,7 +178,7 @@ This configuration file is the setup I created after experimenting with differen
 
         // Normal icons (remove fill/stroke)
         svgr({
-          exclude: ['**/assets/icons/gradients/**/*.svg'],
+          exclude: ['**/assets/icons/gradients/**/*.svg*'],
           svgrOptions: {
             icon: false,
             plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
@@ -444,8 +484,6 @@ Then you start using it in your components
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
-
-
 ---
 
 ## Further Information
@@ -455,3 +493,7 @@ To explore all the available optimization options with SVGO, their [documentatio
 And for more details on SVGR’s configuration and options, take a look at the [SVGR options guide](https://react-svgr.com/docs/options/).
 
 ---
+
+<Card>
+  <Author name="Amr Shoukry" linkedin="https://www.linkedin.com/in/amrshoukry/" github="https://github.com/AmrShoukry/" title="Front-End Developer" src="/amr-shoukry-4x6.png" />
+</Card>
